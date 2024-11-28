@@ -1,0 +1,417 @@
+District,Incident Count
+Birmingham,2665
+Leeds,1901
+Westminster,1372
+Bradford,1256
+Glasgow City,1246
+Sheffield,1193
+"Edinburgh, City of",1164
+Liverpool,1160
+Manchester,1126
+Barnet,995
+Lambeth,987
+Kirklees,956
+"Bristol, City of",954
+Cornwall,881
+Croydon,863
+Southwark,860
+Nottingham,850
+Ealing,847
+Doncaster,844
+Wandsworth,840
+Tower Hamlets,823
+Leicester,813
+Brighton and Hove,769
+County Durham,735
+East Riding of Yorkshire,732
+Hounslow,717
+Camden,708
+Hackney,706
+Wiltshire,705
+Lewisham,699
+Newcastle upon Tyne,696
+Brent,688
+Bromley,687
+Newham,679
+Cardiff,678
+Haringey,670
+Cheshire East,665
+Wakefield,663
+Enfield,662
+"Kingston upon Hull, City of",661
+Stoke-on-Trent,658
+Kensington and Chelsea,653
+Milton Keynes,653
+Coventry,649
+Plymouth,643
+Rotherham,640
+Hillingdon,637
+Greenwich,616
+Redbridge,614
+Islington,613
+Sandwell,601
+Havering,601
+Warrington,585
+Peterborough,580
+Derby,575
+Sunderland,575
+Hammersmith and Fulham,572
+Cheshire West and Chester,564
+Waltham Forest,563
+Wirral,552
+Swansea,551
+Northumberland,546
+Medway,544
+Gateshead,537
+Guildford,530
+Bolton,529
+Wolverhampton,527
+Dudley,523
+Southampton,521
+Portsmouth,513
+North Lanarkshire,511
+Sefton,497
+South Gloucestershire,489
+Barnsley,489
+South Lanarkshire,484
+Walsall,484
+Harrogate,480
+Preston,466
+Bournemouth,464
+North Lincolnshire,463
+Swindon,462
+Wigan,453
+Maidstone,448
+Shropshire,448
+Fife,445
+East Lindsey,443
+Wealden,441
+Central Bedfordshire,438
+Huntingdonshire,432
+Luton,430
+Epping Forest,429
+Carmarthenshire,428
+Highland,428
+Blackpool,427
+"Herefordshire, County of",421
+Calderdale,420
+New Forest,420
+Reigate and Banstead,418
+Powys,416
+York,416
+Merton,415
+North Somerset,414
+Salford,410
+Dartford,407
+Barking and Dagenham,405
+North East Lincolnshire,403
+Aberdeenshire,399
+North Tyneside,398
+Blackburn with Darwen,394
+Thurrock,391
+St. Albans,391
+Aylesbury Vale,389
+South Cambridgeshire,387
+Bexley,385
+Harrow,385
+Stafford,382
+Wycombe,381
+Stockport,381
+Windsor and Maidenhead,379
+Cherwell,378
+Lancaster,378
+Winchester,376
+Northampton,375
+Richmond upon Thames,374
+Southend-on-Sea,373
+Bedford,373
+Thanet,372
+Solihull,371
+Slough,368
+Oldham,366
+Elmbridge,364
+Canterbury,361
+Chelmsford,359
+Basildon,359
+Waverley,358
+Colchester,357
+"Rhondda, Cynon, Taff",357
+Oxford,355
+Runnymede,355
+Tonbridge and Malling,354
+South Staffordshire,352
+Sutton,352
+Stratford-upon-Avon,351
+Poole,350
+Tandridge,349
+Isle of Wight,348
+Chichester,346
+Mole Valley,343
+Rochdale,341
+Mid Sussex,339
+South Kesteven,339
+South Ribble,337
+Trafford,336
+West Berkshire,333
+Bury,333
+St. Helens,332
+West Lothian,329
+Sevenoaks,329
+Swale,328
+South Somerset,326
+Hertsmere,324
+Surrey Heath,322
+East Staffordshire,320
+Newark and Sherwood,317
+Basingstoke and Deane,314
+Teignbridge,312
+Stockton-on-Tees,310
+Bath and North East Somerset,309
+Horsham,309
+Kingston upon Thames,309
+Aberdeen City,308
+Newcastle-under-Lyme,307
+Cambridge,306
+Ashford,306
+Telford and Wrekin,305
+Warwick,303
+Bassetlaw,302
+Spelthorne,300
+North Kesteven,300
+Tameside,300
+Norwich,298
+Dumfries and Galloway,298
+South Bucks,298
+West Lancashire,297
+Arun,297
+South Lakeland,296
+Pembrokeshire,295
+King's Lynn and West Norfolk,293
+Braintree,292
+Test Valley,291
+Reading,291
+Torbay,290
+Welwyn Hatfield,289
+South Oxfordshire,289
+Rugby,287
+Perth and Kinross,286
+South Norfolk,286
+Halton,285
+Tendring,284
+Dacorum,284
+Ashfield,283
+Dover,282
+Charnwood,282
+Exeter,279
+West Lindsey,279
+Renfrewshire,279
+Neath Port Talbot,278
+City of London,277
+Amber Valley,273
+Rushcliffe,271
+East Devon,271
+North Warwickshire,271
+Tunbridge Wells,269
+Suffolk Coastal,269
+Broadland,268
+Wokingham,268
+Ipswich,267
+Wyre,264
+Middlesbrough,263
+Newport,262
+Carlisle,262
+Breckland,261
+East Hampshire,258
+Blaby,257
+Mansfield,256
+North Hertfordshire,256
+Eastleigh,255
+Chorley,255
+Nuneaton and Bedworth,254
+East Hertfordshire,254
+Woking,253
+Gravesham,251
+Sedgemoor,251
+Lichfield,251
+Lincoln,250
+South Holland,249
+Knowsley,248
+Shepway,247
+West Dorset,247
+Burnley,247
+Allerdale,246
+Vale of White Horse,245
+Wychavon,244
+Scottish Borders,244
+Bridgend,243
+Eastbourne,243
+Staffordshire Moorlands,241
+Hambleton,240
+Havant,240
+Rother,239
+Gedling,238
+Taunton Deane,235
+North West Leicestershire,234
+Crawley,234
+Fareham,233
+Scarborough,233
+Waveney,232
+South Tyneside,231
+St. Edmundsbury,231
+Chesterfield,229
+Mendip,229
+Darlington,228
+Falkirk,228
+Stirling,227
+East Dorset,224
+Broxtowe,224
+Babergh,223
+Mid Suffolk,221
+Hastings,221
+South Hams,220
+Argyll and Bute,219
+Bolsover,219
+Fenland,214
+Lewes,213
+Broxbourne,213
+North East Derbyshire,212
+Hinckley and Bosworth,211
+Hart,210
+Worthing,210
+Watford,209
+Fylde,208
+Erewash,203
+High Peak,203
+West Oxfordshire,201
+South Derbyshire,201
+Cannock Chase,199
+Uttlesford,199
+Caerphilly,196
+Selby,196
+North Norfolk,194
+Redcar and Cleveland,194
+North Devon,193
+East Ayrshire,193
+Daventry,193
+Harborough,193
+Midlothian,192
+Bracknell Forest,191
+Three Rivers,190
+The Vale of Glamorgan,190
+Hyndburn,189
+Dundee City,189
+Derbyshire Dales,189
+Bromsgrove,189
+Pendle,188
+Gloucester,187
+South Ayrshire,187
+Rossendale,185
+Ceredigion,183
+Epsom and Ewell,183
+South Northamptonshire,182
+Stroud,182
+East Cambridgeshire,182
+Boston,182
+North Ayrshire,179
+Craven,175
+Wyre Forest,174
+Castle Point,174
+Richmondshire,170
+Brentwood,169
+Tewkesbury,169
+Worcester,168
+Great Yarmouth,167
+Angus,166
+Kettering,164
+Ryedale,163
+Copeland,163
+Cotswold,162
+Stevenage,162
+Eden,161
+Flintshire,160
+Conwy,160
+Mid Devon,159
+Rushmoor,158
+Rochford,155
+Gwynedd,154
+West Devon,151
+Malvern Hills,149
+Adur,148
+Cheltenham,145
+Wrexham,145
+Forest Heath,143
+Denbighshire,140
+Hartlepool,140
+North Dorset,139
+Gosport,138
+Torridge,137
+Forest of Dean,137
+Ribble Valley,137
+East Lothian,137
+Tamworth,136
+Wellingborough,130
+Purbeck,130
+Barrow-in-Furness,130
+Monmouthshire,129
+Moray,127
+West Dunbartonshire,126
+East Northamptonshire,125
+Chester,120
+Inverclyde,117
+Chiltern,116
+East Dunbartonshire,114
+Harlow,113
+Merthyr Tydfil,112
+Maldon,112
+Crewe and Nantwich,111
+Melton,111
+Blaenau Gwent,110
+Vale Royal,110
+Redditch,107
+Weymouth and Portland,107
+Macclesfield,106
+North Wiltshire,102
+Christchurch,100
+Torfaen,100
+Rutland,100
+Salisbury,99
+South Bedfordshire,88
+Carrick,85
+Oadby and Wigston,84
+East Renfrewshire,83
+Mid Bedfordshire,81
+Corby,77
+North Cornwall,77
+Congleton,75
+Restormel,75
+West Somerset,74
+Isle of Anglesey,71
+Shrewsbury and Atcham,64
+Clackmannanshire,63
+West Wiltshire,63
+Blyth Valley,61
+Caradon,57
+Derwentside,54
+Wear Valley,54
+Sedgefield,53
+Kerrier,50
+Durham,50
+Penwith,49
+Ellesmere Port and Neston,46
+Easington,45
+London Airport (Heathrow),44
+Tynedale,42
+Wansbeck,40
+Bridgnorth,40
+Kennet,37
+Chester-le-Street,36
+Castle Morpeth,34
+Western Isles,31
+Shetland Islands,31
+Oswestry,31
+Alnwick,29
+North Shropshire,26
+South Shropshire,23
+Orkney Islands,21
+Teesdale,20
+Berwick-upon-Tweed,11
