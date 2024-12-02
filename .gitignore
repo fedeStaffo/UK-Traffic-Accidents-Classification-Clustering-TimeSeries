@@ -1,2 +1,12 @@
 Data Visualization/UK Image/
 dataset/*.csv
+*.aux
+*.bbl
+*.big
+*.lof
+*.log
+*.lot
+*.out
+thesis/main.pdf
+*.gz
+*.toc

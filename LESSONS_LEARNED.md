@@ -24,3 +24,12 @@ That's not true at all! There's a subtle difference between the silhouette and t
 It is therefore quite possible for some points to cause disagreement between the k-means and the silhouette score.
 
 > More on: [How can silhouette scores be negative?](https://stackoverflow.com/a/66751204/19815002)
+
+## Latex on VSCode
+To setup latex development in VSCode, on Linux, follow this steps:
+1. Purge latex with `apt-get remove tex-common texlive` and `apt-get autoremove`
+ 2. Follow [quickinstall](https://www.tug.org/texlive/quickinstall.html) to install `texlive`,
+ 3. Update the enviroment PATH variable by adding `PATH="/usr/local/texlive/2024/bin/x86_64-linux:$PATH"` at the bottom of `~/.profile`,
+ 4. Log out & log in,
+ 5. Update build settings and recipes as indicated in [vscode-and-latex](https://mathjiajia.github.io/vscode-and-latex/),
+ 6. Remember, don't rely on `apt` to install anything latex-related, otherwise you would end up with conflics between multiple versions.
