@@ -1,0 +1,302 @@
+\documentclass{article}
+
+\usepackage{multicol}
+\setlength { \columnsep }{ 1cm } 
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{matlab-prettifier}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xurl}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt,
+  backgroundcolor=\color{white},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=single,
+  rulecolor=\color{black},
+  tabsize=2,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  title=\lstname,
+  keywordstyle=\color{blue},
+  commentstyle=\color{olive},
+  stringstyle=\color{red}
+}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\renewcommand {\texttt}[1]{%
+  \begingroup
+    \spaceskip=\fontdimen2\font plus \fontdimen3\font minus \fontdimen4\font
+    \xspaceskip=\fontdimen7\font\relax
+    \ttfamily
+    \hyphenchar\font=`\-
+    #1
+  \endgroup
+}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9.0in, 
+    textwidth=6.15in, % era 5.5in
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+\bibliographystyle{plain}
+\nocite{*}
+\bibliography{bib}
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [0.50cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Analisi degli incidenti stradali nel Regno Unito avvenuti nel periodo 2005-2017}
+		\HRule{2.0pt} \\ [0.5cm] \LARGE{Corso di Laurea Magistrale Ingegneria Informatica e dell’Automazione} \\
+            \vspace*{2.5\baselineskip}
+            \includegraphics[width=5cm]{logo univpm.png} % logo università
+            \vspace*{2\baselineskip}
+            }
+		}
+
+\date{\textbf{Anno accademico 2024-2025}}
+
+\author{\textbf{Autori} \\ 
+            Valerio Morelli \\
+            Federica Paganica \\
+            Enrico Maria Sardellini \\
+		Federico Staffolani \\
+            }
+
+\maketitle  
+\thispagestyle{empty} % Non conta la prima pagina nel conteggio delle pagine
+\newpage
+
+\tableofcontents % Tabella dei contenuti
+\newpage
+\listoffigures   % Elenco delle figure
+\newpage
+\listoftables    % Lista delle tabelle
+\newpage
+% ------------------------------------------------------------------------
+\section{Introduzione al dataset}
+{\em Questa tesina fornisce un'analisi completa dei dati sugli incidenti stradali nel Regno Unito, concentrandosi sulle tendenze degli incidenti, sulla distribuzione delle vittime e sui modelli temporali. Il dataset analizzato comprende gli incidenti verificatisi nel periodo 2005-2016, ed offre preziose indicazioni per migliorare le misure di sicurezza stradale.}
+
+\subsection{Descrizione}
+
+Il dataset preso in considerazione per questo progetto fornisce dettagliati dati sugli incidenti stradali e i veicoli coinvolti nel Regno Unito, coprendo il periodo dal 2005 al 2017.
+
+Il governo del Regno Unito, infatti, raccoglie e pubblica, di solito su base annuale, informazioni dettagliate sugli incidenti stradali in tutto il paese. Queste informazioni provengono dal sito \textit{Open Data} del governo britannico, pubblicate dal \textit{Dipartimento dei Trasporti}.
+
+La raccolta comprende informazioni riguardanti posizioni geografiche, condizioni meteorologiche, tipi di veicoli, numero di vittime e manovre dei veicoli coinvolti. È una risorsa completa e interessante per l'analisi e la ricerca nel campo della sicurezza stradale.
+
+È possibile accedere a questo dataset tramite il seguente link: \url{https://www.kaggle.com/datasets/tsiaras/uk-road-safety-accidents-and-vehicles}.
+
+\subsection{Struttura delle tabelle}
+
+Il dataset è composto da due file \texttt{.csv}:
+
+\begin{itemize}
+    \item \texttt{Accident\_Information.csv}: ogni riga rappresenta un incidente stradale unico identificato dalla colonna \texttt{Accident\_Index}, con varie proprietà legate all'incidente e con un intervallo temporale compreso tra il 2005 e il 2017.
+    \item \texttt{Vehicle\_Information.csv}: ogni riga rappresenta il coinvolgimento di un veicolo unico in un incidente stradale unico, con varie proprietà di veicoli e passeggeri e con un intervallo temporale compreso tra il 2005 e il 2017.
+\end{itemize}
+
+I due file possono essere collegati attraverso l'\textit{identificatore univoco} dell'incidente stradale (colonna \texttt{Accident\_Index}).
+
+Si osserva, inoltre, che la sigla \textit{LSOA}, presente in uno dei campi di \texttt{Accident\_Information}, sta per "\textit{Lower Layer Super Output Area}". Queste sono aree più piccole rispetto ai distretti, progettate dall'Ufficio Nazionale di Statistica del Regno Unito per consentire analisi più dettagliate a livello locale e per agevolare la raccolta di dati socio-economici e demografici. [1]
+
+Oltre a ciò, è opportuno notare che l'\textit{IMD Decile}, dove IMD sta per \textit{Indices of Multiple Deprivation}, è uno strumento utilizzato per valutare il degrado in in diverse aree geografiche, come quartieri o comunità. Nello specifico, i decili presenti in questo dataset vengono calcolati classificando i 32.844 LSOA in Inghilterra dal più deprivato al meno deprivato e suddividendoli in 10 gruppi uguali. Gli LSOA con valore 1 rientrano nel 10\% più svantaggiato degli LSOA a livello nazionale e gli LSOA con valore 10 rientrano nel 10\% meno svantaggiato degli LSOA a livello nazionale. Quindi, il campo \texttt{Driver\_IMD\_Decile} di \texttt{Vehicle\_Information} riporta tale indice, relativo alla provenienza del conducente del veicolo che è stato coinvolto in un incidente. [2]
+
+Di seguito sono forniti per esteso gli elenchi completi dei campi delle due tabelle.
+
+\begin{table}[h]
+  \centering
+  \caption{Campi di \texttt{Accident\_Information.csv}}
+  \begin{tabular}{l|l}
+    \toprule
+    \textbf{Campo} & \textbf{Descrizione} \\
+    \midrule
+    \texttt{Accident\_Index} & Identificatore univoco dell'incidente stradale \\
+    \texttt{1st\_Road\_Class} & Classe della prima strada coinvolta \\
+    \texttt{1st\_Road\_Number} & Numero della prima strada coinvolta \\
+    \texttt{2nd\_Road\_Class} & Classe della seconda strada coinvolta \\
+    \texttt{2nd\_Road\_Number} & Numero della seconda strada coinvolta \\
+    \texttt{Accident\_Severity} & Severità dell'incidente \\
+    \texttt{Carriageway\_Hazards} & Pericoli sulla carreggiata \\
+    \texttt{Date} & Data dell'incidente \\
+    \texttt{Day\_of\_Week} & Giorno della settimana dell'incidente \\
+    \texttt{Did\_Police\_Officer\_Attend\_Scene\_of\_Accident} & Presenza di un ufficiale di polizia sulla scena \\
+    \texttt{Junction\_Control} & Controllo dell'incrocio \\
+    \texttt{Junction\_Detail} & Dettagli dell'incrocio \\
+    \texttt{Latitude} & Latitudine dell'incidente \\
+    \texttt{Light\_Conditions} & Condizioni di illuminazione \\
+    \texttt{Local\_Authority\_(District)} & Autorità locale (distretto) \\
+    \texttt{Local\_Authority\_(Highway)} & Autorità locale (strada) \\
+    \texttt{Location\_Easting\_OSGR} & Coordinate est della posizione dell'incidente \\
+    \texttt{Location\_Northing\_OSGR} & Coordinate nord della posizione dell'incidente \\
+    \texttt{Longitude} & Longitudine dell'incidente \\
+    \texttt{LSOA\_of\_Accident\_Location} & LSOA della posizione dell'incidente \\
+    \texttt{Number\_of\_Casualties} & Numero di vittime \\
+    \texttt{Number\_of\_Vehicles} & Numero di veicoli \\
+    \texttt{Pedestrian\_Crossing-Human\_Control} & Attraversamento pedonale - Controllo umano \\
+    \texttt{Pedestrian\_Crossing-Physical\_Facilities} & Attraversamento pedonale - Strutture fisiche \\
+    \texttt{Police\_Force} & Forza di polizia \\
+    \texttt{Road\_Surface\_Conditions} & Condizioni della superficie stradale \\
+    \texttt{Road\_Type} & Tipo di strada \\
+    \texttt{Special\_Conditions\_at\_Site} & Condizioni speciali sul sito \\
+    \texttt{Speed\_limit} & Limite di velocità \\
+    \texttt{Time} & Ora dell'incidente \\
+    \texttt{Urban\_or\_Rural\_Area} & Area urbana o rurale \\
+    \texttt{Weather\_Conditions} & Condizioni meteorologiche \\
+    \texttt{Year} & Anno dell'incidente \\
+    \texttt{InScotland} & Incidente in Scozia \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \caption{Campi di \texttt{Vehicle\_Information.csv}}
+  \begin{tabular}{l|l}
+    \toprule
+    \textbf{Campo} & \textbf{Descrizione} \\
+    \midrule
+    \texttt{Accident\_Index} & Identificatore univoco dell'incidente stradale \\
+    \texttt{Age\_Band\_of\_Driver} & Fascia di età del conducente \\
+    \texttt{Age\_of\_Vehicle} & Età del veicolo coinvolto \\
+    \texttt{Driver\_Home\_Area\_Type} & Tipo di area di residenza del conducente \\
+    \texttt{Driver\_IMD\_Decile} & Decile di deprivazione del conducente \\
+    \texttt{Engine\_Capacity\_.CC.} & Cilindrata del motore \\
+    \texttt{Hit\_Object\_in\_Carriageway} & Oggetto colpito sulla carreggiata \\
+    \texttt{Hit\_Object\_off\_Carriageway} & Oggetto colpito fuori dalla carreggiata \\
+    \texttt{Journey\_Purpose\_of\_Driver} & Scopo del viaggio del conducente \\
+    \texttt{Junction\_Location} & Posizione dell'incrocio \\
+    \texttt{make} & Marca del veicolo \\
+    \texttt{model} & Modello del veicolo \\
+    \texttt{Propulsion\_Code} & Codice di propulsione del veicolo \\
+    \texttt{Sex\_of\_Driver} & Sesso del conducente \\
+    \texttt{Skidding\_and\_Overturning} & Scivolamento e ribaltamento del veicolo \\
+    \texttt{Towing\_and\_Articulation} & Traino e articolazione del veicolo \\
+    \texttt{Vehicle\_Leaving\_Carriageway} & Veicolo che lascia la carreggiata \\
+    \texttt{Vehicle\_Location.Restricted\_Lane} & Posizione del veicolo - Corsia limitata \\
+    \texttt{Vehicle\_Manoeuvre} & Manovra del veicolo \\
+    \texttt{Vehicle\_Reference} & Riferimento al veicolo \\
+    \texttt{Vehicle\_Type} & Tipo di veicolo \\
+    \texttt{Was\_Vehicle\_Left\_Hand\_Drive} & Veicolo a guida a sinistra \\
+    \texttt{X1st\_Point\_of\_Impact} & Primo punto di impatto \\
+    \texttt{Year} & Anno dell'incidente \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\clearpage
+
+\subsection{Operazioni di ETL}
+Il dataset in uso è particolarmente voluminoso sia dal punto di vista del numero di colonne che del numero di righe. Per questo motivo, prima di importarlo nei tre software per svolgere le analisi, è risultato conveniente rimuovere le informazioni di utilità minore.
+
+In particolare, sono state rimosse le colonne \texttt{InScotland}, \texttt{Police\_Force}, \texttt{LSOA\_of\_ Accident\_Location}, \texttt{Location\_Easting\_OSGR} e \texttt{Location\_Northing\_OSGR} dal dataset sugli incidenti e le colonne \texttt{Vehicle\_Location.Restricted\_Lane} e \texttt{Vehicle\_Reference} dal dataset sui veicoli.
+
+Successivamente ci si è accorti della presenza di veicoli nel secondo dataset relativi ad incidenti avvenuti nel 2004 (cosa che è stata possibile dedurre osservando campo \texttt{Accident\_Index}), mancanti quindi di corrispettivo nel primo dataset riportante informazioni sugli incidenti a partire dall'anno 2005. Inoltre, ad un' analisi più approfondita si è notata la non corrispondenza di una minoranza di incidenti tra i due dataset. Quindi, per tali ragioni, a ciascuno dei due dataset sono state rimosse le righe riguardanti incidenti non registrati nell' altro dataset. Dunque sono state eseguite due operazioni di \texttt{inner join} su ciascun dataset. 
+
+Infine è stata creata una versione alternativa del dataset snellendone il volume verticale. Per far ciò è stato eseguito un ordinamento rispetto alla colonna \texttt{Date} e rimosse tutte le righe eccetto una ogni 100. In questo modo è stato possibile rimuovere in modo uniforme rispetto all'arco temporale il volume del dataset. Si noti però che tale versione ridotta è stata utilizzata per motivi di prestazioni, ma solo in quelle analisi che non coinvolgono l'estrazione di dati cumulativi come la somma del numero di incidenti. In tutti gli altri casi, per mantenere le analisi più fedeli possibili, si è utilizzato la versione senza rimozione di righe.
+
+Tutte queste operazioni di \textit{ETL} sono state eseguite utilizzando la libreria \textit{Pandas} di \textit{Python}.
+
+\clearpage
+
+\begin{lstlisting}[language= Python, caption=Operazioni di ETL con Pandas, label=code001]
+import pandas as pd
+
+# Caricamento del dataset sugli incidenti e rimozione delle colonne non necessarie
+accident_df = pd.read_csv('Accident_Information.csv') \
+    .drop(columns=['InScotland', 'Police_Force', 'LSOA_of_Accident_Location',
+                   'Location_Easting_OSGR', 'Location_Northing_OSGR'])
+
+# Caricamento del dataset sui veicoli e rimozione delle colonne non necessarie
+vehicle_df = pd.read_csv('Vehicle_Information.csv', encoding="ISO-8859-1") \
+    .drop(columns=['Vehicle_Location.Restricted_Lane', 'Vehicle_Reference'])
+
+# Estrazione di una data ogni 10 nel dataset degli incidenti
+accident_df['Date'] = pd.to_datetime(accident_df['Date'])
+accident_df.sort_values(by='Date', inplace=True)
+accident_df = accident_df.iloc[::10, :]
+
+# Rimozione degli incidenti senza informazioni sui veicoli tramite una inner join
+# Nota: data la possibile presenza di piu' veicoli in un incidente, vengono rimossi i duplicati prima di eseguire il merge, in modo da non presentare duplicati nelle righe del primo dataset
+incidents_in_veichle_df = vehicle_df[['Accident_Index']].drop_duplicates(subset='Accident_Index')
+accident_df = pd.merge(accident_df, incidents_in_veichle_df, on='Accident_Index', how='inner')
+
+# Salvataggio del dataset degli incidenti ripulito in un file CSV
+accident_df.to_csv('accident_etl.csv', index=False)
+
+# Rimozione dei veicoli non associati ad alcun incidente nel primo dataset mediante una inner join
+vehicle_df = pd.merge(accident_df[['Accident_Index']], vehicle_df, on='Accident_Index', how='inner')
+
+# Salvataggio del dataset dei veicoli ripulito in un file CSV
+vehicle_df.to_csv('vehicle_etl.csv', index=False)
+\end{lstlisting}
+
+\clearpage
+\include{classificazione/Classificazione}
+\clearpage
+\include{clustering/Clustering}
+\clearpage
+\include{serietemporali/SerieTemporali}
+
+\clearpage
+\section*{Siti web consultati}
+
+\begin{enumerate}
+    \item OCSI UK: Indices of Deprivation, LSOA. (2024) \url{https://ocsi.uk/indices-of-deprivation}
+    \item NCDR Reference Library: Indices of multiple deprivation (IMD) decile. (2024) \url{https://data.england.nhs.uk/ncdr/data_element/indices-of-multiple-deprivation-imd-decile}
+    \item 2010 to 2015 government policy: road safety. (2015, maggio 8). In \textit{Gov.uk}. \url{https://www.gov.uk/government/publications/2010-to-2015-government-policy-road-safety/2010-to-2015-government-policy-road-safety}
+\end{enumerate}
+
+% ---------------------------------------------------
+\end{document}
+
