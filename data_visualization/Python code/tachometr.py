@@ -1,73 +1,84 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 
-# Leggi il file CSV
+# Read the CSV file
 data = pd.read_csv("reducted.csv")
 
-# Filtra i dati per rimuovere 'Unknown'
+# Filter data to remove 'Unknown'
 data = data[data['Road_Type'] != 'Unknown']
 
-# Mappa Accident_Severity in valori numerici
-severity_map = {"Slight": 1, "Serious": 2, "Fatal": 3}
+# Filter data to remove 'Unknown'
+data = data[data['Accident_Severity'] != 'Slight']
+
+# Map Accident_Severity to numeric values
+severity_map = {"Serious": 0, "Fatal": 1}
 data["Accident_Severity"] = data["Accident_Severity"].map(severity_map)
 
-# Trova i valori unici di Road_Type
+# Find unique values of Road_Type
 road_types = data["Road_Type"].unique()
 
-# Funzione per creare il tachimetro
+# Function to create the gauge chart
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.colors import LinearSegmentedColormap
+
 def create_gauge_chart(value, title, filename):
-    # Controlla se il valore è valido
-    if not np.isfinite(value) or not (1 <= value <= 3):
-        print(f"Errore: valore non valido ({value}) per il grafico {title}")
+    # Check if the value is valid
+    if not np.isfinite(value) or not (0 <= value <= 1):
+        print(f"Error: invalid value ({value}) for the chart {title}")
         return
 
-    print(f"Creazione del grafico per {title} con valore medio: {value}")
+    print(f"Creating chart for {title} with average value: {value}")
 
     fig, ax = plt.subplots(figsize=(6, 4), subplot_kw={'projection': 'polar'})
 
-    # Definisci i colori (verde, giallo, rosso)
-    colors = ['#DC3545', '#FFC107', '#28A745']  # Slight: verde, Serious: giallo, Fatal: rosso
-    intervals = [1, 2, 3]  # Slight, Serious, Fatal
+    # Create a continuous color scale
+    colors = ['#B22222', '#FF4500', '#FFC107']  # Yellow -> Intense orange -> Intense red
+    cmap = LinearSegmentedColormap.from_list("CustomMap", colors)
 
-    # Crea il tachimetro come mezza ciambella
-    for i, color in enumerate(colors):
-        start = np.pi * (i / len(intervals))  # Inizia ogni colore a un'angolazione diversa
-        end = np.pi * ((i + 1) / len(intervals))
-        print(f"Segmento {i}: start={start}, end={end}, color={color}")
-        ax.barh([1], [end - start], left=start, color=color, edgecolor="white", linewidth=1, height=0.5)
+    # Angles for the scale
+    theta = np.linspace(0, np.pi, 500)  # 500 steps from 0 to pi
+    radii = np.ones_like(theta)  # A constant radius to draw the scale
 
-    # Calcola la posizione dell'indicatore (dove si trova il valore medio)
-    value_theta = np.pi * (value - 1) / 2  # Mappa da [1, 3] a [0, pi]
-    print(f"Lancetta: value_theta={value_theta}")
+    # Create the colored scale
+    values = np.linspace(0, 1, 500)  # Values from 0 to 1 along theta
+    colors = cmap(values)  # Apply the color map
 
-    # Inverti la direzione della lancetta
-    value_theta_inverted = np.pi - value_theta  # Inverti la direzione della lancetta
-    ax.plot([value_theta_inverted, value_theta_inverted], [0, 1.1], color="black", linewidth=3, zorder=5)  # Lancetta invertita
+    ax.barh(radii, np.pi / 500, left=theta, color=colors, edgecolor="white", linewidth=0)
 
-    # Titolo del grafico con il valore medio
-    ax.set_title(f"{title} ({value:.2f})", va="bottom", fontsize=14, weight="bold")
+    # Position of the needle (where the average value is located)
+    value_theta = np.pi * value  # Map the value to [0, pi]
+    value_theta_inverted = np.pi - value_theta  # Invert the direction of the needle
+    ax.plot([value_theta_inverted, value_theta_inverted], [0, 1.1], color="black", linewidth=3, zorder=5)
+    value_perc = value * 100  # Convert the value to percentage
+    value_perc_string = f"{value_perc:.2f}%"  # Format as percentage string with two decimal places
 
-    # Aggiungi etichette sotto il grafico
-    ax.text(np.pi+0.07, 1.0, "Slight", ha="center", va="center", fontsize=12, color="black", weight="bold")  # A sinistra
-    ax.text(0-0.07, 1.0, "Fatal", ha="center", va="center", fontsize=12, color="black", weight="bold")      # A destra
+    # Chart title with the average value
+    ax.set_title(f"{title} ({value_perc_string})", va="bottom", fontsize=14, weight="bold")
 
-    # Rimuovi assi e sfondo
+    # Labels for the scale edges
+    ax.text(np.pi+0.07, 1.0, "Serious", ha="center", va="center", fontsize=12, color="black", weight="bold")
+    ax.text(0-0.07, 1.0, "Fatal", ha="center", va="center", fontsize=12, color="black", weight="bold")
+
+    # Remove axes and background
     ax.set_axis_off()
 
-    # Salva il grafico
+    # Save the chart
     plt.savefig(filename, bbox_inches="tight", dpi=300)
     plt.close()
 
-# Genera i grafici per ciascun tipo di strada
+# Generate charts for each road type
 for road_type in road_types:
     road_data = data[data["Road_Type"] == road_type]
     
-    # Calcola la media della gravità
+    # Calculate the average severity
     mean_severity = road_data["Accident_Severity"].mean()
+    mean_severity_perc = mean_severity * 100
     
-    # Debug: Stampa il valore calcolato
-    print(f"Valore medio per {road_type}: {mean_severity}")
+    # Debug: Print the calculated value
+    print(f"Average value for {road_type}: {mean_severity_perc}%")
     
     create_gauge_chart(mean_severity, f"Road Type: {road_type}", f"{road_type}_Severity.png")
-    print(f"Grafico creato per Road_Type: {road_type}")
+    print(f"Chart created for Road_Type: {road_type}")
