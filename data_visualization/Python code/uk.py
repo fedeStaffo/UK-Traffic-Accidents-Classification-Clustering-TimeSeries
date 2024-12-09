@@ -28,7 +28,7 @@ incident_percentages = (incident_counts / total_incidents) * 100
 districts_shapefile['incident_percentage'] = districts_shapefile['LAD24NM'].map(incident_percentages).fillna(0)
 
 # Create the choropleth map
-fig, ax = plt.subplots(figsize=(20, 20)) 
+fig, ax = plt.subplots(figsize=(14, 14)) 
 
 plt.subplots_adjust(left=0.05, right=0.95, top=0.95, bottom=0.05)
 
